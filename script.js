@@ -37,3 +37,20 @@ document.addEventListener('DOMContentLoaded', updateUSDPrices);
 
 // Update prices every 5 minutes
 setInterval(updateUSDPrices, 5 * 60 * 1000);
+
+
+const { createThirdwebClient, walletConnect, embeddedWallet } = thirdweb;
+
+const client = createThirdwebClient({
+  clientId: "689e2ac97c20befd3e1ab5c236b48184",
+});
+
+async function connectWallet() {
+  const wallet = walletConnect({
+    client,
+  });
+
+  const connection = await wallet.connect();
+  console.log("Connected wallet address:", connection.address);
+}
+
