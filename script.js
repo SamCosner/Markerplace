@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', updateUSDPrices);
 // Update prices every 5 minutes
 setInterval(updateUSDPrices, 5 * 60 * 1000);
 
-// Global connectWallet function using Thirdweb SDK v3.3.9
+// ✅ Connect Wallet using working Thirdweb SDK
 window.connectWallet = async function () {
   try {
     const sdk = new thirdweb.ThirdwebSDK("ethereum");
@@ -46,8 +46,8 @@ window.connectWallet = async function () {
     alert("Wallet connected: " + address);
     console.log("Connected wallet:", address);
   } catch (error) {
+    alert("Wallet connection failed: " + error.message);
     console.error("Wallet connection failed:", error);
-    alert("Failed to connect wallet.");
   }
 };
 
