@@ -9,6 +9,8 @@ body {
 h1 {
   font-size: 4rem;
   margin-bottom: 1rem;
+  word-wrap: break-word;
+  padding: 0 20px;
 }
 
 header {
@@ -98,7 +100,13 @@ button {
   font-weight: bold;
   color: #0f3d2e;
   font-size: 1.2rem;
-  margin: 10px 0;
+  margin: 10px 0 5px 0;
+}
+
+.listing .usd-price {
+  color: #666;
+  font-size: 0.9rem;
+  margin: 0 0 10px 0;
 }
 
 footer {
@@ -185,10 +193,20 @@ footer {
   margin-bottom: 18px;
 }
 
+.listing-detail-price .price-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .listing-detail-price .price {
   font-size: 1.5rem;
   color: #0f3d2e;
   font-weight: bold;
+}
+
+.listing-detail-price .usd-price {
+  color: #666;
+  font-size: 0.9rem;
 }
 
 .listing-detail-price .buy-button {
@@ -243,5 +261,20 @@ footer {
   .listing-detail-image img {
     width: 100%;
     margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2rem;
+  }
+  header {
+    padding: 20px;
   }
 }
