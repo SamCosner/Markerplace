@@ -6,15 +6,18 @@
   <title>AcreX Marketplace</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+
+  <!-- ✅ Thirdweb scripts MUST be in head -->
   <script src="https://unpkg.com/@thirdweb-dev/sdk@4/dist/thirdweb.umd.min.js"></script>
   <script src="https://unpkg.com/@thirdweb-dev/chains@0.1.7/dist/chains.umd.min.js"></script>
-  
+
+  <!-- ✅ Defer your script so it runs AFTER thirdweb is loaded -->
+  <script src="script.js" defer></script>
 </head>
 <body>
   <header>
     <h1>AcreX Marketplace</h1>
     <button onclick="connectWallet()">Connect Wallet</button>
-
   </header>
 
   <section class="marketplace">
@@ -40,16 +43,17 @@
             <p class="price">0.0123 ETH</p>
             <p class="usd-price">≈ $0.00 USD</p>
             <button class="buy-button">Buy Token</button>
-          </div>
-        </a>
-        
-      <div class="listing sold-out">
-        <img src="images/cow2.jpeg" alt="Cow 2">
-        <h3>Hereford Calf #003</h3>
-        <p>Age: 5 months</p>
-        <p class="price">0.9 ETH</p>
-        <p class="usd-price">≈ $0.00 USD</p>
-        <button class="buy-button" disabled>Sold Out</button>
+          </a>
+        </div>
+
+        <div class="listing sold-out">
+          <img src="images/cow2.jpeg" alt="Cow 2">
+          <h3>Hereford Calf #003</h3>
+          <p>Age: 5 months</p>
+          <p class="price">0.9 ETH</p>
+          <p class="usd-price">≈ $0.00 USD</p>
+          <button class="buy-button" disabled>Sold Out</button>
+        </div>
       </div>
     </div>
   </section>
@@ -57,6 +61,5 @@
   <footer>
     <p>&copy; 2025 AcreX. All rights reserved.</p>
   </footer>
-  <script src="script.js"></script>
 </body>
 </html>
