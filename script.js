@@ -1,41 +1,39 @@
-
-// Use Thirdweb's UMD build (already included via <script> tag in HTML)
-const client = new thirdweb.ThirdwebClient({
-  clientId: "689e2ac97c20befd3e1ab5c236b48184", // Replace with actual Client ID from Thirdweb
-});
-
-const contract = new thirdweb.Contract({
-  client,
-  chain: thirdwebChains.defineChain(11155111), // Sepolia testnet
-  address: "0x5c5d34599745be9719e816bb40E86d9705Ae636b", // Your deployed contract address
-});
-
-let connectedWallet = null;
-
-document.getElementById("connectWallet").addEventListener("click", async () => {
+// Function to fetch current ETH price in USD
+async function getETHPrice() {
   try {
-    connectedWallet = await thirdweb.connectWallet("metamask", { client });
-    alert("Wallet connected: " + connectedWallet.address);
-  } catch (err) {
-    console.error("Wallet connection failed:", err);
-    alert("Failed to connect wallet.");
+    const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd');
+    const data = await response.json();
+    return data.ethereum.usd;
+  } catch (error) {
+    console.error('Error fetching ETH price:', error);
+    return null;
   }
-});
+}
 
-const buyButtons = document.querySelectorAll(".buy-button");
-buyButtons.forEach((button) => {
-  button.addEventListener("click", async () => {
-    if (!connectedWallet) {
-      alert("Please connect your wallet first.");
-      return;
-    }
+// Function to update USD prices
+async function updateUSDPrices() {
+  const ethPrice = await getETHPrice();
+  if (!ethPrice) return;
 
-    try {
-      const tx = await contract.erc20.claim(1);
-      alert("Token purchased! TX: " + tx.receipt.transactionHash);
-    } catch (err) {
-      console.error("Token purchase failed:", err);
-      alert("Purchase failed. See console for details.");
-    }
+  // Update marketplace listing prices
+  const marketplacePrices = document.querySelectorAll('.listing .usd-price');
+  marketplacePrices.forEach(priceElement => {
+    const ethAmount = parseFloat(priceElement.previousElementSibling.textContent);
+    const usdAmount = ethAmount * ethPrice;
+    priceElement.textContent = `≈ $${usdAmount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD`;
   });
-});
+
+  // Update listing detail page prices
+  const detailPrices = document.querySelectorAll('.listing-detail-price .usd-price');
+  detailPrices.forEach(priceElement => {
+    const ethAmount = parseFloat(priceElement.previousElementSibling.textContent);
+    const usdAmount = ethAmount * ethPrice;
+    priceElement.textContent = `≈ $${usdAmount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD`;
+  });
+}
+
+// Update prices when page loads
+document.addEventListener('DOMContentLoaded', updateUSDPrices);
+
+// Update prices every 5 minutes
+setInterval(updateUSDPrices, 5 * 60 * 1000);
