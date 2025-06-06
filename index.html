@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AcreX Marketplace</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+  <script src="https://unpkg.com/@thirdweb-dev/sdk@4/dist/thirdweb.umd.min.js"></script>
+  <script src="https://unpkg.com/@thirdweb-dev/chains@0.1.7/dist/chains.umd.min.js"></script>
+  <script type="module" src="script.js"></script>
+</head>
+<body>
+  <header>
+    <h1>AcreX Marketplace</h1>
+    <button id="connectWallet">Connect Wallet</button>
+  </header>
+
+  <section class="marketplace">
+    <h2>Available Tokenized Cows</h2>
+    <div class="listing-grid">
+      <a href="cow1listing.html" class="listing-link">
+        <div class="listing">
+          <img src="images/cow1.jpeg" alt="Cow 1">
+          <h3>Angus Calf #001</h3>
+          <p>Age: 6 months</p>
+          <p class="price">1 ETH</p>
+          <button class="buy-button">Buy Token</button>
+        </div>
+      </a>
+
+      <div class="listing-grid">
+        <div class="listing">
+          <a href="cow2listing.html" class="listing-link">
+            <img src="images/cow3.jpeg" alt="Cow 3">
+            <h3>Angus Cow #002</h3>
+            <p>Age: 12 months</p>
+            <p class="price">1 ETH</p>
+            <button class="buy-button">Buy Token</button>
+          </div>
+        </a>
+        
+      <div class="listing sold-out">
+        <img src="images/cow2.jpeg" alt="Cow 2">
+        <h3>Hereford Calf #003</h3>
+        <p>Age: 5 months</p>
+        <p class="price">0.9 ETH</p>
+        <button class="buy-button" disabled>Sold Out</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 AcreX. All rights reserved.</p>
+  </footer>
+</body>
+</html>
