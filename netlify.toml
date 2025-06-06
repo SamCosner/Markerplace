@@ -1,0 +1,5 @@
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "script-src 'self' 'unsafe-eval' https://unpkg.com; script-src-attr 'unsafe-inline'"
+    X-Content-Type-Options = "nosniff"
