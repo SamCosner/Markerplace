@@ -57,3 +57,9 @@ window.connectWallet = async function () {
     alert("Failed to connect wallet.");
   }
 };
+document.addEventListener("DOMContentLoaded", function () {
+  const btn = document.querySelector("button.connect-wallet");
+  if (btn) {
+    btn.addEventListener("click", connectWallet);
+  }
+});
