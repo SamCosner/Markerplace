@@ -7,11 +7,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 
-  <!-- ✅ Thirdweb scripts MUST be in head -->
-  <script src="https://unpkg.com/@3rdweb/sdk@3.0.11/dist/thirdweb.umd.min.js"></script>
-  <script src="https://unpkg.com/@thirdweb-dev/chains@0.1.7/dist/chains.umd.min.js"></script>
+  <!-- ✅ WORKING Thirdweb UMD script (jsDelivr, not unpkg) -->
+  <script src="https://cdn.jsdelivr.net/npm/@3rdweb/sdk@3.0.11/dist/thirdweb.umd.min.js"></script>
 
-  <!-- ✅ Defer your script so it runs AFTER thirdweb is loaded -->
+  <!-- ✅ Your JS (make sure it's in the same directory) -->
   <script src="script.js" defer></script>
 </head>
 <body>
