@@ -38,19 +38,22 @@ document.addEventListener('DOMContentLoaded', updateUSDPrices);
 // Update prices every 5 minutes
 setInterval(updateUSDPrices, 5 * 60 * 1000);
 
+// Global connectWallet function for Thirdweb
+window.connectWallet = async function () {
+  const { createThirdwebClient, walletConnect } = thirdweb;
+  const { ethereum } = thirdweb_chains;
 
-const { createThirdwebClient, walletConnect, embeddedWallet } = thirdweb;
-
-const client = createThirdwebClient({
-  clientId: "689e2ac97c20befd3e1ab5c236b48184",
-});
-
-async function connectWallet() {
-  const wallet = walletConnect({
-    client,
+  const client = createThirdwebClient({
+    clientId: "689e2ac97c20befd3e1ab5c236b48184",
   });
 
-  const connection = await wallet.connect();
-  console.log("Connected wallet address:", connection.address);
-}
-
+  try {
+    const wallet = walletConnect({ client });
+    const connection = await wallet.connect({ chain: ethereum });
+    console.log("Connected wallet address:", connection.address);
+    alert("Wallet connected: " + connection.address);
+  } catch (error) {
+    console.error("Wallet connection failed:", error);
+    alert("Failed to connect wallet.");
+  }
+};
